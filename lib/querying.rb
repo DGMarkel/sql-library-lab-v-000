@@ -32,7 +32,13 @@ def select_name_and_series_subgenres_of_authors
 end
 
 def select_series_title_with_most_human_characters
-  select_value_and_count_of_most_prolific_species
+  SELECT series.title 
+  FROM series
+  JOIN characters
+  ON series.id = characters.series_id
+  GROUP BY species
+  ORDER BY COUNT(species) DESC LIMIT 1
+  "
 end
 
 def select_character_names_and_number_of_books_they_are_in
